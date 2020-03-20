@@ -48,6 +48,29 @@ def simulate(n, N, preferredSize):
             self.x = x
             self.y = y
 
+        def nextPos(self, isBlack):
+            x = self.x
+            y = self.y
+            if isBlack:
+                if self.facing == "UP":
+                    x = self.x - 1
+                elif self.facing == "DOWN":
+                    x = self.x + 1
+                elif self.facing == "LEFT":
+                    y = self.y + 1
+                elif self.facing == "RIGHT":
+                    y = self.y - 1
+            else:
+                if self.facing == "UP":
+                    x = self.x + 1
+                elif self.facing == "DOWN":
+                    x = self.x - 1
+                elif self.facing == "LEFT":
+                    y = self.y - 1
+                elif self.facing == "RIGHT":
+                    y = self.y + 1
+            return x, y
+
         def move(self, isBlack):
             if isBlack:
                 if self.facing == "UP":
@@ -181,9 +204,13 @@ def simulate(n, N, preferredSize):
             if state != "SHOW":
                 antPos = ant.getPos()
                 cell = grid[antPos[1]][antPos[0]]
-                ant.move(cell.isBlack())
-                cell.updateCell()
-                cont += 1
+                nextMove = ant.nextPos(cell.isBlack())
+                if 0 <= nextMove[0] <= n and 0 <= nextMove[1] <= n:
+                    ant.move(cell.isBlack())
+                    cell.updateCell()
+                    cont += 1
+                else:
+                    cont = N
                 state = "SHOW"
             else:
                 state = "RUNNING"
