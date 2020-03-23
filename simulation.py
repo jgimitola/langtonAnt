@@ -205,7 +205,7 @@ def simulate(n, N, preferredSize):
                 antPos = ant.getPos()
                 cell = grid[antPos[1]][antPos[0]]
                 nextMove = ant.nextPos(cell.isBlack())
-                if 0 <= nextMove[0] <= n and 0 <= nextMove[1] <= n:
+                if 0 <= nextMove[0] < n and 0 <= nextMove[1] < n:
                     ant.move(cell.isBlack())
                     cell.updateCell()
                     cont += 1
