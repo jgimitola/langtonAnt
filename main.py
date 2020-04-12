@@ -1,3 +1,7 @@
+# Creado por Jesus Imitola
+# GitHub User: jgimitola
+# Fecha: del 19 de Marzo de 2020 hasta el 12 de Abril de 2020.
+
 import pygame
 import thorpy
 
